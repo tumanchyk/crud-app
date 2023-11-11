@@ -1,4 +1,4 @@
-import { TitleEl } from "./Ttle.styled";
+import { TitleEl } from "./Title.styled";
 const Title = ({name}) => {
     return <TitleEl>{name}</TitleEl>
 }

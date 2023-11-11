@@ -1,15 +1,17 @@
 import { Link } from "react-router-dom";
-import { Button } from "@material-ui/core";
-import { HeaderEl, Logo } from "./Header.styled";
-import logo from "../../imgs/world.png"
+import {useContext} from 'react';
+import { Context } from '../App';
+import { HeaderEl, Logo, LogoutBtn } from "./Header.styled";
+import logo from "../../imgs/world.png";
 
 const Header = () => {
+    const { setIsLoggedIn } = useContext(Context);
     return <HeaderEl>
         <Link to="/">
             <Logo src={logo} alt="logo" />
         </Link>
-        <Button>Logout</Button>
-  </HeaderEl>
+        <LogoutBtn onClick={() => setIsLoggedIn(false)}>Logout</LogoutBtn>
+    </HeaderEl>
 }
 
 export default Header;

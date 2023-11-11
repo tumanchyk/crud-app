@@ -1,20 +1,22 @@
-import { Input } from "@material-ui/core";
+import {useContext, useState} from 'react';
+import Button from "@material-ui/core/Button";
+import { Context } from '../../App';
 import CustomInput from "../CustomInput/CustomInput";
 import { Form } from "./Form.styled";
-import Button from "@material-ui/core/Button";
-import { useState } from 'react';
 
 const LoginForm = () => {
     const [user, setUser] = useState({ email: "", password: "" });
     const [errors, setErrors] = useState({ email: "", password: "" });
-
+    const { setIsLoggedIn } = useContext(Context);
+  
     const handleChange = e => {
         const { id, value } = e.currentTarget;
         setUser(prevUser => ({
         ...prevUser,
         [id]: value,
         }));
-    };
+  };
+  
     const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -24,8 +26,8 @@ const LoginForm = () => {
         password: !user.password ? "Password is required" : "",
       });
     } else {
-        console.log("Form submitted:", user);
-        setUser({ email: "", password: "" })
+      setUser({ email: "", password: "" });
+      setIsLoggedIn(true);
     }
     };
     

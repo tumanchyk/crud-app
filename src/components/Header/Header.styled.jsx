@@ -12,3 +12,32 @@ export const Logo = styled.img`
 width: 50px; 
 height: 50px;
 `
+export const LogoutBtn = styled.button`
+position: relative;
+background: none;
+outline: none;
+border: none;
+cursor: pointer;
+transition: all 250ms cubic-bezier(0.4, 0, 0.2, 1);
+text-transform: uppercase;
+font-weight: 600;
+line-height: 2;
+padding: 0;
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    transform: scale(0, 1);
+    transition: all 300ms cubic-bezier(0.4, 0, 0.2, 1);
+    background-color: #202020;
+    z-index: 1;
+  }
+
+  &:hover::after{
+    transform: scale(1);
+  }
+
+`

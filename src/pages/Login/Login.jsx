@@ -1,11 +1,11 @@
-import LoginForm from "../../components/LoginForm/LoginForm";
+import LoginForm from "../../components/AuthComponents/LoginForm/LoginForm";
 import { Section } from "./Login.styled";
+
 const Login = () => {
     
     return <Section>
-        <LoginForm/>
-            
+        <LoginForm/>      
     </Section>
 }
 
-export default Login
+export default Login;
