@@ -1,12 +1,11 @@
 import React from "react";
 import { FormControl, InputLabel, Input, FormHelperText } from "@mui/material";
 
-const CustomInput = ({label, id, handleChange, type, value, error}) => {
+const CustomInput = ({label, id, handleChange, type, value, error, required}) => {
 
-  return (
-    <FormControl fullWidth={true}>
+  return <FormControl fullWidth={true}>
         <InputLabel htmlFor={id}>
-            {label}
+          {label}
         </InputLabel>
         <Input
           id={id}
@@ -14,12 +13,11 @@ const CustomInput = ({label, id, handleChange, type, value, error}) => {
           onChange={handleChange}
           autoComplete="off"
           type={type}
-          required
+          required={required}
         />
         <FormHelperText>{error}</FormHelperText>
 
     </FormControl>
-  );
 }
 
 export default CustomInput;

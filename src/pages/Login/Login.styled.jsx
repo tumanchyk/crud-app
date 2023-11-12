@@ -7,7 +7,7 @@ justify-content: center;
 align-items: center;
 width: 100%;
 height: 100vh;
-background: #6C7D8D url(${bg}) no-repeat;
+background: url(${bg}) no-repeat;
 background-position: 50% 50%;
 background-size: 100%;
 `

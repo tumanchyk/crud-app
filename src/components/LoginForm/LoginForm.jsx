@@ -1,8 +1,8 @@
 import {useContext, useState} from 'react';
-import Button from "@material-ui/core/Button";
-import { Context } from '../../App';
-import CustomInput from "../CustomInput/CustomInput";
-import { Form } from "./Form.styled";
+import { Context } from '../App';
+import CustomInput from "../FormComponents/CustomInput";
+import FormBtn from '../FormComponents/FormButton';
+import { Form } from "./LoginForm.styled";
 
 const LoginForm = () => {
     const [user, setUser] = useState({ email: "", password: "" });
@@ -40,6 +40,7 @@ const LoginForm = () => {
             handleChange={handleChange}
             error={errors.email}
             type="email"
+            required={true}
           />
           <CustomInput
             label="Password"
@@ -48,11 +49,11 @@ const LoginForm = () => {
             handleChange={handleChange}
             error={errors.password}
             type="password"
+            required={true}
           />
 
-          <Button type="submit" color="primary" >
-            Log in
-          </Button>
+          <FormBtn name="Log in" type="submit" />
+
         </Form>
 }
 export default LoginForm;

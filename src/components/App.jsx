@@ -13,7 +13,7 @@ export const Context = createContext();
 const App = () => {
   const [list, setList] = useState([]);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  
+
   useEffect(() => {
     const storedUser = JSON.parse(window.localStorage.getItem('LoggedInUser'));
     if (storedUser) {
@@ -24,8 +24,21 @@ const App = () => {
   }, [])
 
   useEffect(() => {
+    const storedList = JSON.parse(window.localStorage.getItem('TravelList'));
+    if (storedList.length) {
+      setList(storedList)
+    } else {
+      window.localStorage.setItem('TravelList', JSON.stringify([]))
+    }
+  }, [])
+
+  useEffect(() => {
       window.localStorage.setItem('LoggedInUser', isLoggedIn)
   }, [isLoggedIn])
+
+  useEffect(() => {
+      window.localStorage.setItem('TravelList', JSON.stringify(list))
+  }, [list])
 
 
   return (

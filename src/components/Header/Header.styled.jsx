@@ -4,7 +4,7 @@ export const HeaderEl = styled.header`
 display: flex;
 align-items: center;
 justify-content: space-between;
-width: 1280px;
+width: 1240px;
 margin: 0 auto;
 padding: 20px;
 `
@@ -18,9 +18,9 @@ background: none;
 outline: none;
 border: none;
 cursor: pointer;
-transition: all 250ms cubic-bezier(0.4, 0, 0.2, 1);
 text-transform: uppercase;
 font-weight: 600;
+transition: all 300ms ease-out;
 line-height: 2;
 padding: 0;
   &::after {
@@ -31,7 +31,7 @@ padding: 0;
     width: 100%;
     height: 1px;
     transform: scale(0, 1);
-    transition: all 300ms cubic-bezier(0.4, 0, 0.2, 1);
+    transition: all 300ms ease-out;
     background-color: #202020;
     z-index: 1;
   }

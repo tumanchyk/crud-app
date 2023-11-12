@@ -9,8 +9,11 @@ const List = () => {
 
     return <>
         <HeadList>
-            <HeadItem>Country</HeadItem>
-            <HeadItem>Places</HeadItem>
+            <HeadItem width ={"240px"}>Country</HeadItem>
+            <HeadItem width ={"240px"}>Places</HeadItem>
+            <HeadItem width ={"240px"}>Date</HeadItem>
+            <HeadItem width ={"240px"}>Overview</HeadItem>
+            <HeadItem width ={"100px"}>Visited</HeadItem>
         </HeadList>
         {list.length <= 0 ? <NoItems>Any places in your list</NoItems>
         : <ListEl>
