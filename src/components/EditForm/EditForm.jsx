@@ -1,18 +1,24 @@
-import { useState, useContext } from "react";
+import { useState, useEffect, useContext } from "react";
 import { useNavigate } from 'react-router-dom';
+import {useParams} from 'react-router';
 import Checkbox from '@mui/material/Checkbox';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import CustomInput from "../FormComponents/CustomInput";
 import FormBtn from "../FormComponents/FormButton";
 import Textarea from "../FormComponents/Textarea";
-import { Form } from "./AddItemForm.styled";
+import { Form } from "../AddItemForm/AddItemForm.styled";
 import { Context } from '../App';
-import { createId } from "../../utils/createId";
 
-const AddItemForm = () => {
-    const [data, setData] = useState({ id: null, country: "", places: "", date: "", overview: "", isVisited: false });
+const EditForm = () => {
+    const [data, setData] = useState({});
     const { list, setList } = useContext(Context);
     const navigate = useNavigate();
+    const { id } = useParams();
+
+    useEffect(() => {
+        const currentItem = list.find(item => item.id === id);
+        setData(currentItem)
+    }, [])
 
     const handleChange = (e) => {
         const { id, value } = e.currentTarget;
@@ -31,12 +37,16 @@ const AddItemForm = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        const id = createId();
-        setList([...list, { ...data, id }]);
-        setData({ id: null, country: "", places: "", date: "", overview: "", isVisited: false });
+        const index = list.findIndex(item => item.id === id);
+
+        if (index !== -1) {
+            const newList = [...list];
+            newList[index] = data;
+            setList(newList);
+        }
+        
         navigate('/');
     }
-    
     return <Form autoComplete="off" onSubmit={handleSubmit}>
         <CustomInput
             label="Country"
@@ -71,7 +81,7 @@ const AddItemForm = () => {
         <FormControlLabel onChange={() => inputHandleChange(!data.isVisited)} checked={data.isVisited}
             control={<Checkbox sx={{ '& .MuiSvgIcon-root': { fontSize: 24 }, '&.Mui-checked.MuiCheckbox-colorPrimary': { color: "#202020" } }} />} label="Visited" />
         
-        <FormBtn name="Add new location" type="submit" />
+        <FormBtn name="Save changes" type="submit" />
     </Form>
 }
-export default AddItemForm;
+export default EditForm;
