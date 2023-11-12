@@ -32,6 +32,7 @@ const AddItemForm = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
         const id = createId();
+        console.log("id: ", id);
         setList([...list, { ...data, id }]);
         setData({ id: null, country: "", places: "", date: "", overview: "", isVisited: false });
         navigate('/');

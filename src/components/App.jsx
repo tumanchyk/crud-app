@@ -25,10 +25,11 @@ const App = () => {
 
   useEffect(() => {
     const storedList = JSON.parse(window.localStorage.getItem('TravelList'));
-    if (storedList.length) {
-      setList(storedList)
+
+    if (storedList && storedList.length) {
+        setList(storedList);
     } else {
-      window.localStorage.setItem('TravelList', JSON.stringify([]))
+        window.localStorage.setItem('TravelList', JSON.stringify([]));
     }
   }, [])
 

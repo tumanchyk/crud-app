@@ -16,11 +16,11 @@ const ListItem = ({ data: { id, country, places, date, overview, isVisited } }) 
 
     return <Item>
         <Desc >{country}</Desc>
-        <Desc>{places}</Desc>
-        <Desc>{date}</Desc>
-        <Desc>{overview}</Desc>
+        <Desc>{places ? places : "—"}</Desc>
+        <Desc>{date ? date : "—"}</Desc>
+        <Desc>{overview ? overview : "—"}</Desc>
         <div style={{ width: "120px", paddingLeft: "20px", boxSizing: "border-box"}}>
-          {isVisited ? <img src={doneIcon} alt="visited" width={28}/> : <span>--</span>}  
+          {isVisited ? <img src={doneIcon} alt="visited" width={28}/> : <span>—</span>}  
         </div>
         <ButtonWrap>
             <Link to={`/edit/${id}`} style={{ width: "40px", height: "40px"}}><img src={editIcon} alt="edit button"/></Link>
