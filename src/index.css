@@ -11,7 +11,9 @@ body {
   background-color: rgb(230, 220, 229);
   color: #202020;
 }
-
+* {
+  box-sizing: border-box;
+}
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;

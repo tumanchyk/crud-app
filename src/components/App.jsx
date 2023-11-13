@@ -12,8 +12,9 @@ export const Context = createContext();
 
 const App = () => {
   const [list, setList] = useState([]);
+  const [typeList, setTypeList] = useState("all");
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-
+  
   useEffect(() => {
     const storedUser = JSON.parse(window.localStorage.getItem('LoggedInUser'));
     if (storedUser) {
@@ -43,7 +44,7 @@ const App = () => {
 
 
   return (
-    <Context.Provider value={{list, setList, isLoggedIn, setIsLoggedIn}}>
+    <Context.Provider value={{list, setList, isLoggedIn, setIsLoggedIn, typeList, setTypeList}}>
       <Routes>
         <Route index element={<Navigate to="/list" />} />
         <Route

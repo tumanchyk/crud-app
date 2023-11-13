@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import bg from "../../imgs/image-from-rawpixel-id-6285610-original.png";
+import bg from "../../imgs/map-bg.png";
 
 export const Section = styled.main`
 min-height: 100vh;

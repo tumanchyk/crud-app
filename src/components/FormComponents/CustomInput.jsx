@@ -13,9 +13,9 @@ const CustomInput = ({label, id, handleChange, type, value, error, required}) =>
           color: '#202020'
         }
       }}>
-          {label}
-        </InputLabel>
-        <Input
+      {label}
+    </InputLabel>
+    <Input
       id={id}
       value={value}
       onChange={handleChange}
@@ -27,10 +27,10 @@ const CustomInput = ({label, id, handleChange, type, value, error, required}) =>
           borderBottomColor: '#202020'
         }
       }}
-        />
-        <FormHelperText>{error}</FormHelperText>
+    />
+    <FormHelperText>{error}</FormHelperText>
 
-    </FormControl>
+  </FormControl>
 }
 
 export default CustomInput;

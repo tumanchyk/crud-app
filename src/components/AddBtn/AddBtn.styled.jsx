@@ -2,15 +2,13 @@ import { Link } from "react-router-dom"
 import styled from "@emotion/styled";
 
 export const Button = styled(Link)`
-position: relative;
-    display: inline-block;
-    width: 120px;
-    padding: 12px 27px;
-    text-align: center;
+    position: relative;
+    display: block;
+    height: 54px;
+    padding: 18px 27px;
     font-size: 14px;
     text-decoration: none;
     margin-left: auto;
-    margin-bottom: 50px;
     color: #202020;
     border: 1px solid #202020;
     background: transparent;
