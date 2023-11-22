@@ -1,14 +1,16 @@
-import {useContext, useState} from 'react';
-import { Context } from '../App';
+import { Link } from 'react-router-dom';
+import { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import CustomInput from "../FormComponents/CustomInput";
 import FormBtn from '../FormComponents/FormButton';
-import { Form } from "./LoginForm.styled";
+import { Form } from "../FormComponents/AuthForm.styled";
+import { loginUser } from '../../store/auth/authOperations';
 
 const LoginForm = () => {
     const [user, setUser] = useState({ email: "", password: "" });
     const [errors, setErrors] = useState({ email: "", password: "" });
-    const { setIsLoggedIn } = useContext(Context);
-  
+    const dispatch = useDispatch();
+
     const handleChange = e => {
         const { id, value } = e.currentTarget;
         setUser(prevUser => ({
@@ -26,8 +28,8 @@ const LoginForm = () => {
         password: !user.password ? "Password is required" : "",
       });
     } else {
+      dispatch(loginUser(user))
       setUser({ email: "", password: "" });
-      setIsLoggedIn(true);
     }
     };
     
@@ -53,7 +55,7 @@ const LoginForm = () => {
           />
 
           <FormBtn name="Log in" type="submit" />
-
+          <Link to="/register">Don't have an account?</Link>
         </Form>
 }
 export default LoginForm;

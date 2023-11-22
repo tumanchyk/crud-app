@@ -8,6 +8,7 @@ border-bottom: 1px solid rgba(0, 0, 0, 0.2);
 export const Desc = styled.p`
 box-sizing: border-box;
 font-size: 16px;
+overflow: hidden;
 width : 245px;
 padding-right: 25px;
 &:nth-child(4){

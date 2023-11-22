@@ -18,7 +18,7 @@ const EditForm = () => {
     useEffect(() => {
         const currentItem = list.find(item => item.id === id);
         setData(currentItem)
-    }, [])
+    }, [id, list])
 
     const handleChange = (e) => {
         const { id, value } = e.currentTarget;

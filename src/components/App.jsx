@@ -2,7 +2,8 @@ import { createContext, useState, lazy, useEffect } from 'react';
 import { Route, Routes, Navigate } from 'react-router-dom';
 import PrivateRoute from './Routes/PrivateRoute';
 import PublicRoute from './Routes/PublicRoute';
-import Login from '../pages/Login/Login';
+import Login from '../pages/Login';
+import Register from '../pages/Register';
 import AddItem from "../pages/AddItem";
 import EditItem from '../pages/EditItem';
 
@@ -13,16 +14,6 @@ export const Context = createContext();
 const App = () => {
   const [list, setList] = useState([]);
   const [typeList, setTypeList] = useState("all");
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-  
-  useEffect(() => {
-    const storedUser = JSON.parse(window.localStorage.getItem('LoggedInUser'));
-    if (storedUser) {
-      setIsLoggedIn(true);
-    } else {
-      window.localStorage.setItem('LoggedInUser', false)
-    }
-  }, [])
 
   useEffect(() => {
     const storedList = JSON.parse(window.localStorage.getItem('TravelList'));
@@ -35,16 +26,12 @@ const App = () => {
   }, [])
 
   useEffect(() => {
-      window.localStorage.setItem('LoggedInUser', isLoggedIn)
-  }, [isLoggedIn])
-
-  useEffect(() => {
       window.localStorage.setItem('TravelList', JSON.stringify(list))
   }, [list])
 
 
   return (
-    <Context.Provider value={{list, setList, isLoggedIn, setIsLoggedIn, typeList, setTypeList}}>
+    <Context.Provider value={{list, setList, typeList, setTypeList}}>
       <Routes>
         <Route index element={<Navigate to="/list" />} />
         <Route
@@ -67,6 +54,12 @@ const App = () => {
             path="/login"
             element={
               <PublicRoute component={Login} redirectTo={'/list'} />
+            }
+          />
+        <Route
+            path="/register"
+            element={
+              <PublicRoute component={Register} redirectTo={'/list'} />
             }
           />
       </Routes>
