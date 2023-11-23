@@ -1,18 +1,18 @@
-import { useState, useContext } from "react";
+import { useState } from "react";
 import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 import Checkbox from '@mui/material/Checkbox';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import CustomInput from "../FormComponents/CustomInput";
 import FormBtn from "../FormComponents/FormButton";
 import Textarea from "../FormComponents/Textarea";
 import { Form } from "./AddItemForm.styled";
-import { Context } from '../App';
-import { createId } from "../../utils/createId";
+import { createPlace } from "../../store/places/placesOperations";
 
 const AddItemForm = () => {
-    const [data, setData] = useState({ id: null, country: "", places: "", date: "", overview: "", isVisited: false });
-    const { list, setList } = useContext(Context);
+    const [data, setData] = useState({ country: "", places: "", date: "", overview: "", isVisited: false });
     const navigate = useNavigate();
+    const dispatch = useDispatch();
 
     const handleChange = (e) => {
         const { id, value } = e.currentTarget;
@@ -31,10 +31,8 @@ const AddItemForm = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        const id = createId();
-        console.log("id: ", id);
-        setList([...list, { ...data, id }]);
-        setData({ id: null, country: "", places: "", date: "", overview: "", isVisited: false });
+        dispatch(createPlace(data));
+        setData({ country: "", places: "", date: "", overview: "", isVisited: false });
         navigate('/');
     }
     

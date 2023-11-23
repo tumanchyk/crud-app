@@ -1,11 +1,19 @@
-import {useContext, useEffect, useState} from 'react';
+import {useEffect, useState} from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import ListItem from "./ListItem/ListItem";
 import { ListEl, HeadList, HeadItem, NoItems } from "./List.styled";
-import { Context } from "../App";
+import { getAllPlaces } from '../../store/places/placesOperations';
 
 const List = () => {
     const [currentList, setCurrentList] = useState([]);
-    const { list, typeList } = useContext(Context);
+    const dispatch = useDispatch();
+
+    const list = useSelector(state => state.places.list);
+    const typeList = useSelector(state => state.places.type);
+
+    useEffect(() => {
+      dispatch(getAllPlaces())  
+    }, [dispatch])
 
     useEffect(() => {
         if (typeList === "visited") {
@@ -30,7 +38,7 @@ const List = () => {
             <HeadItem width ={"120px"}>Visited</HeadItem>
         </HeadList>
         <ListEl>
-            {currentList.map(item => <ListItem data={item} key={item.id} />)}
+            {currentList.map(item => <ListItem data={item} key={item._id} />)}
         </ListEl>
         </>}
     </>

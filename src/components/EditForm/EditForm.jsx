@@ -1,24 +1,23 @@
-import { useState, useEffect, useContext } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from 'react-router-dom';
-import {useParams} from 'react-router';
+import { useDispatch, useSelector} from 'react-redux';
 import Checkbox from '@mui/material/Checkbox';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import CustomInput from "../FormComponents/CustomInput";
 import FormBtn from "../FormComponents/FormButton";
 import Textarea from "../FormComponents/Textarea";
 import { Form } from "../AddItemForm/AddItemForm.styled";
-import { Context } from '../App';
+import { updatePlaces } from "../../store/places/placesOperations";
 
 const EditForm = () => {
-    const [data, setData] = useState({});
-    const { list, setList } = useContext(Context);
+    const place = useSelector(state => state.places.selectedPlace)
+    const [data, setData] = useState({_id: "", county: "", palces: "", date: "", overview: "", isVisited: false});
     const navigate = useNavigate();
-    const { id } = useParams();
+    const dispatch = useDispatch();
 
     useEffect(() => {
-        const currentItem = list.find(item => item.id === id);
-        setData(currentItem)
-    }, [id, list])
+        setData(place);
+    }, [place])
 
     const handleChange = (e) => {
         const { id, value } = e.currentTarget;
@@ -37,16 +36,10 @@ const EditForm = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        const index = list.findIndex(item => item.id === id);
-
-        if (index !== -1) {
-            const newList = [...list];
-            newList[index] = data;
-            setList(newList);
-        }
-        
+        dispatch(updatePlaces(data));
         navigate('/');
     }
+
     return <Form autoComplete="off" onSubmit={handleSubmit}>
         <CustomInput
             label="Country"

@@ -1,19 +1,19 @@
-import { Link } from "react-router-dom";
-import {useContext} from 'react';
+import { Link, useNavigate } from "react-router-dom";
+import { useDispatch } from 'react-redux';
 import editIcon from "../../../imgs/edit.svg";
 import crossIcon from "../../../imgs/cross.png";
 import doneIcon from "../../../imgs/done.svg";
 import { Item, Desc, ButtonWrap, ModifyBtn } from "./ListItem.styled";
-import { Context } from "../../App";
+import { deletePlaces } from "../../../store/places/placesOperations";
 
-const ListItem = ({ data: { id, country, places, date, overview, isVisited } }) => {
-    const { list, setList } = useContext(Context);
+const ListItem = ({ data: { _id, country, places, date, overview, isVisited } }) => {
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
 
-    const handleRemove = (id) => {
-        const newList = list.filter(item => item.id !== id);
-        setList(newList)
+    const handleDelete = (id) => {
+        dispatch(deletePlaces(id))
+        navigate('/');
     }
-
     return <Item>
         <Desc >{country}</Desc>
         <Desc>{places ? places : "—"}</Desc>
@@ -23,8 +23,8 @@ const ListItem = ({ data: { id, country, places, date, overview, isVisited } }) 
           {isVisited ? <img src={doneIcon} alt="visited" width={28}/> : <span>—</span>}  
         </div>
         <ButtonWrap>
-            <Link to={`/edit/${id}`} style={{ width: "40px", height: "40px"}}><img src={editIcon} alt="edit button"/></Link>
-            <ModifyBtn onClick={() => handleRemove(id)}><img src={crossIcon} alt="cross button"/></ModifyBtn>
+            <Link to={`/edit/${_id}`} style={{ width: "40px", height: "40px"}}><img src={editIcon} alt="edit button"/></Link>
+            <ModifyBtn onClick={() => handleDelete(_id)}><img src={crossIcon} alt="cross button"/></ModifyBtn>
         </ButtonWrap>
     </Item>
 }

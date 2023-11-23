@@ -1,37 +1,19 @@
-import { createContext, useState, lazy, useEffect } from 'react';
 import { Route, Routes, Navigate } from 'react-router-dom';
 import PrivateRoute from './Routes/PrivateRoute';
 import PublicRoute from './Routes/PublicRoute';
+import ItemList from '../pages/List';
 import Login from '../pages/Login';
 import Register from '../pages/Register';
 import AddItem from "../pages/AddItem";
 import EditItem from '../pages/EditItem';
-
-const ItemList = lazy(() => import('../pages/List'));
-
-export const Context = createContext();
+import { useSelector } from 'react-redux';
 
 const App = () => {
-  const [list, setList] = useState([]);
-  const [typeList, setTypeList] = useState("all");
 
-  useEffect(() => {
-    const storedList = JSON.parse(window.localStorage.getItem('TravelList'));
-
-    if (storedList && storedList.length) {
-        setList(storedList);
-    } else {
-        window.localStorage.setItem('TravelList', JSON.stringify([]));
-    }
-  }, [])
-
-  useEffect(() => {
-      window.localStorage.setItem('TravelList', JSON.stringify(list))
-  }, [list])
-
+const user = useSelector(state => state.auth)
+// console.log(user);
 
   return (
-    <Context.Provider value={{list, setList, typeList, setTypeList}}>
       <Routes>
         <Route index element={<Navigate to="/list" />} />
         <Route
@@ -63,7 +45,6 @@ const App = () => {
             }
           />
       </Routes>
-    </Context.Provider>
   );
 }
 

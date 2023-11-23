@@ -1,15 +1,16 @@
-import {useContext} from 'react';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
-import { Context } from '../App';
+import { useDispatch, useSelector } from 'react-redux';
+import { changeType } from '../../store/places/placesSlice';
 
 const SelectEl = () => {
-    const { typeList, setTypeList } = useContext(Context);
-
-    const handleChange = (event) => {
-        setTypeList(event.target.value);
-    };
+  const typeList = useSelector(state => state.places.type);
+  const dispatch = useDispatch();
+  
+  const handleChange = (event) => {
+    dispatch(changeType(event.target.value))
+  };
 
   return <FormControl sx={{
           minWidth: 200,
