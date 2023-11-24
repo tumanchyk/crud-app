@@ -1,4 +1,4 @@
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useDispatch } from 'react-redux';
 import editIcon from "../../../imgs/edit.svg";
 import crossIcon from "../../../imgs/cross.png";
@@ -8,11 +8,9 @@ import { deletePlaces } from "../../../store/places/placesOperations";
 
 const ListItem = ({ data: { _id, country, places, date, overview, isVisited } }) => {
     const dispatch = useDispatch();
-    const navigate = useNavigate();
 
     const handleDelete = (id) => {
         dispatch(deletePlaces(id))
-        navigate('/');
     }
     return <Item>
         <Desc >{country}</Desc>

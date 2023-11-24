@@ -13,7 +13,7 @@ const List = () => {
 
     useEffect(() => {
       dispatch(getAllPlaces())  
-    }, [dispatch])
+    }, [dispatch, list])
 
     useEffect(() => {
         if (typeList === "visited") {
