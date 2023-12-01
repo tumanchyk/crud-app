@@ -1,10 +1,6 @@
 import axios from '../../api/baseURL';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
-const clearAuthHeader = () => {
-  axios.defaults.headers.common.Authorization = '';
-};
-
 export const registerUser = createAsyncThunk(
   'auth/register',
   async (user, thunkAPI) => {
@@ -34,9 +30,25 @@ export const logoutUser = createAsyncThunk(
   async (_, thunkAPI) => {
     try {
       await axios.post('/logout');
-      clearAuthHeader();
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }
   }
 );
+
+export const refreshUser = createAsyncThunk(
+   'auth/refresh',
+    async(_, thunkAPI) => {
+      const {token} = thunkAPI.getState().auth;
+      if (!token) {
+          return thunkAPI.rejectWithValue('No valid token')
+        }
+
+      try{
+        const currentUser = await axios.get('/current');
+        return currentUser.data
+      } catch (error){
+        return thunkAPI.rejectWithValue(error.message)
+      }
+    } 
+)

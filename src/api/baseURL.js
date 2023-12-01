@@ -1,7 +1,7 @@
 import axios from "axios";
 import { store } from "../store/store";
 
-const axiosBaseUrl = "http://localhost:7000";
+const axiosBaseUrl = "https://travel-s-notes.onrender.com";
 axios.defaults.baseURL = axiosBaseUrl; 
 
 axios.interceptors.request.use(

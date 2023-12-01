@@ -10,10 +10,10 @@ const List = () => {
 
     const list = useSelector(state => state.places.list);
     const typeList = useSelector(state => state.places.type);
-
+    
     useEffect(() => {
-      dispatch(getAllPlaces())  
-    }, [dispatch, list])
+        dispatch(getAllPlaces())  
+    }, [dispatch])
 
     useEffect(() => {
         if (typeList === "visited") {

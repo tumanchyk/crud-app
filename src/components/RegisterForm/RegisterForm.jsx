@@ -1,6 +1,6 @@
 import { useDispatch } from 'react-redux';
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import CustomInput from "../FormComponents/CustomInput";
 import FormBtn from '../FormComponents/FormButton';
 import { Form } from "../FormComponents/AuthForm.styled";
@@ -10,6 +10,7 @@ const RegisterForm = () => {
   const [user, setUser] = useState({ email: "", password: "", name: "" });
   const [errors, setErrors] = useState({ email: "", password: "", name: "" });
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const handleChange = e => {
       const { id, value } = e.currentTarget;
@@ -29,8 +30,9 @@ const RegisterForm = () => {
         password: !user.password ? "Password is required" : "",
       });
     } else {
-      dispatch(registerUser(user))
+      dispatch(registerUser(user));
       setUser({ email: "", password: "", name: "" });
+      navigate('/login');
     }
   };
     

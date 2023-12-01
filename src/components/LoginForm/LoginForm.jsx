@@ -29,7 +29,6 @@ const LoginForm = () => {
       });
     } else {
       dispatch(loginUser(user))
-      setUser({ email: "", password: "" });
     }
     };
     

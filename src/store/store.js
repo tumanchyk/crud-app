@@ -9,6 +9,7 @@ import {
   PURGE,
   REGISTER,
 } from 'redux-persist';
+
 import storage from 'redux-persist/lib/storage';
 import { devToolsEnhancer } from '@redux-devtools/extension';
 
@@ -20,7 +21,7 @@ const enhancer = devToolsEnhancer();
 const persistConfig = {
   key: 'auth',
   storage,
-  whitelist: ['token', 'isLoggedIn'],
+  whitelist: ['token'],
 };
 
 const reducers = combineReducers({

@@ -12,7 +12,6 @@ const placesSlice = createSlice({
   reducers: {
     changeType: (state, action) => {
       state.type = action.payload;
-      console.log(action);
     }
   },
   extraReducers: builder => {

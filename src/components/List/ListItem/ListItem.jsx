@@ -4,13 +4,14 @@ import editIcon from "../../../imgs/edit.svg";
 import crossIcon from "../../../imgs/cross.png";
 import doneIcon from "../../../imgs/done.svg";
 import { Item, Desc, ButtonWrap, ModifyBtn } from "./ListItem.styled";
-import { deletePlaces } from "../../../store/places/placesOperations";
+import { deletePlaces, getAllPlaces } from "../../../store/places/placesOperations";
 
 const ListItem = ({ data: { _id, country, places, date, overview, isVisited } }) => {
     const dispatch = useDispatch();
 
-    const handleDelete = (id) => {
-        dispatch(deletePlaces(id))
+    const handleDelete = async(id) => {
+        await dispatch(deletePlaces(id));
+        dispatch(getAllPlaces());
     }
     return <Item>
         <Desc >{country}</Desc>
