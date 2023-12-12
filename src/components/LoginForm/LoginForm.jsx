@@ -1,10 +1,10 @@
-import { Link } from 'react-router-dom';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import CustomInput from "../FormComponents/CustomInput";
 import FormBtn from '../FormComponents/FormButton';
-import { Form } from "../FormComponents/AuthForm.styled";
 import { loginUser } from '../../store/auth/authOperations';
+import { Form } from "../FormComponents/AuthForm.styled";
+import { AccountLink } from '../FormComponents/AccountLink.styled';
 
 const LoginForm = () => {
     const [user, setUser] = useState({ email: "", password: "" });
@@ -54,7 +54,7 @@ const LoginForm = () => {
           />
 
           <FormBtn name="Log in" type="submit" />
-          <Link to="/register">Don't have an account?</Link>
+          <AccountLink to="/register">Don't have an account?</AccountLink>
         </Form>
 }
 export default LoginForm;

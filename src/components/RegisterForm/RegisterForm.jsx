@@ -1,10 +1,11 @@
 import { useDispatch } from 'react-redux';
 import { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import CustomInput from "../FormComponents/CustomInput";
 import FormBtn from '../FormComponents/FormButton';
-import { Form } from "../FormComponents/AuthForm.styled";
 import { registerUser } from '../../store/auth/authOperations';
+import { Form } from "../FormComponents/AuthForm.styled";
+import { AccountLink } from '../FormComponents/AccountLink.styled';
 
 const RegisterForm = () => {
   const [user, setUser] = useState({ email: "", password: "", name: "" });
@@ -67,7 +68,7 @@ const RegisterForm = () => {
           />
 
           <FormBtn name="Register" type="submit" />
-          <Link to="/login">Already have an account?</Link>
+          <AccountLink to="/login">Already have an account?</AccountLink>
         </Form>
 }
 export default RegisterForm;
