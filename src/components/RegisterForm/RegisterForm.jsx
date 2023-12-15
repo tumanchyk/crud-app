@@ -12,7 +12,7 @@ const RegisterForm = () => {
   const [errors, setErrors] = useState({ email: "", password: "", name: "" });
   const dispatch = useDispatch();
   const navigate = useNavigate();
-
+  
   const handleChange = e => {
       const { id, value } = e.currentTarget;
       setUser(prevUser => ({
@@ -33,7 +33,7 @@ const RegisterForm = () => {
     } else {
       dispatch(registerUser(user));
       setUser({ email: "", password: "", name: "" });
-      navigate('/login');
+      navigate('/login');  
     }
   };
     

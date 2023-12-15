@@ -11,12 +11,10 @@ import {
 } from 'redux-persist';
 
 import storage from 'redux-persist/lib/storage';
-import { devToolsEnhancer } from '@redux-devtools/extension';
 
 import { authReducer } from "./auth/authSlice";
 import { placesReducer } from "./places/placesSlice";
 
-const enhancer = devToolsEnhancer();
 
 const persistConfig = {
   key: 'auth',
@@ -39,7 +37,6 @@ export const store = configureStore({
         },
       }),
     ],
-  },
-  enhancer
-);
+});
+  
 export const persistor = persistStore(store);
